@@ -1,7 +1,84 @@
 <head>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
+    <style>
+        .table-responsive {
+            overflow-x: auto;
+        }
+        .table thead th {
+            background-color: #343a40;
+            color: white;
+            font-weight: 600;
+        }
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        .btn-action {
+            margin: 2px;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        .btn-action i {
+            margin-right: 5px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+        .form-container {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+        .filtros {
+            margin-bottom: 20px;
+        }
+        .filtros input {
+            margin-right: 10px;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .filtros button {
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: 1px solid #007bff;
+            background-color: #007bff;
+            color: white;
+        }
+        .filtros button:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+    </style>
 </head>
 <x-app-layout>
     <x-slot name="header">
@@ -9,7 +86,9 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Lista de Clientes') }}
             </h2>
-            <a href="{{ route('clientes.create') }}"><button class="btn btn-primary">Cadastrar Clientes</button></a>
+            <a href="{{ route('clientes.create') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-plus"></i> Cadastrar Cliente
+            </a>
         </div>
     </x-slot>
 
@@ -18,44 +97,56 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="form-container">
+                        <!-- Filtros -->
+                        <div class="filtros">
+                            <input type="text" placeholder="Nome">
+                            <input type="text" placeholder="CPF">
+                            <input type="text" placeholder="Email">
+                            <input type="text" placeholder="Telefone">
+                            <button><i class="fas fa-filter"></i> Filtrar</button>
+                        </div>
 
                         <!-- Tabela de Clientes -->
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nome</th>
-                                    <th>CPF</th>
-                                    <th>Email</th>
-                                    <th>Telefone</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($clientes as $cliente)
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
                                     <tr>
-                                        <td>{{ $cliente->id }}</td>
-                                        <td>{{ $cliente->nome }}</td>
-                                        <td>{{ $cliente->cpf }}</td>
-                                        <td>{{ $cliente->email }}</td>
-                                        <td>{{ $cliente->telefone }}</td>
-                                        <td>
-                                        <a href="{{ route('clientes.show', $cliente->id) }}" class="btn btn-info btn-sm">
-                                                    <i class="fas fa-search"></i> Visualizar
-                                         </a>
-                                            <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-warning btn-sm">
-                                            <i class="fas fa-pencil-alt"></i> Editar</a>
-                                            <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" style="display:inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>Excluir</button>
-                                            </form>
-                                        </td>
+                                        <th>#</th>
+                                        <th>Nome</th>
+                                        <th>CPF</th>
+                                        <th>Email</th>
+                                        <th>Telefone</th>
+                                        <th>Ações</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-
+                                </thead>
+                                <tbody>
+                                    @foreach($clientes as $cliente)
+                                        <tr>
+                                            <td>{{ $cliente->id }}</td>
+                                            <td>{{ $cliente->nome }}</td>
+                                            <td>{{ $cliente->cpf }}</td>
+                                            <td>{{ $cliente->email }}</td>
+                                            <td>{{ $cliente->telefone }}</td>
+                                            <td>
+                                                <a href="{{ route('clientes.show', $cliente->id) }}" class="btn btn-info btn-action">
+                                                    <i class="fas fa-search"></i> Visualizar
+                                                </a>
+                                                <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-warning btn-action">
+                                                    <i class="fas fa-pencil-alt"></i> Editar
+                                                </a>
+                                                <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-action" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
+                                                        <i class="fas fa-trash-alt"></i> Excluir
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
