@@ -54,6 +54,10 @@
                                                     <i class="fas fa-trash-alt"></i> Excluir
                                                 </button>
                                             </form>
+                                            <!-- Botão de Venda -->
+                                            <a href="{{ route('saidas.create', $produto->id) }}" class="btn btn-success btn-sm">
+                                                <i class="fas fa-shopping-cart"></i> Vender
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -6,6 +6,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\UnidadeController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\SaidaProdutoController;
 
 Route::view('/', 'welcome');
 
@@ -48,6 +49,24 @@ Route::resource('produtos', ProdutoController::class)->names([
     'update' => 'produtos.update',  // Nome para atualizar
     'destroy' => 'produtos.destroy', // Nome para destruir
 ]);
+
+// Rotas de Saídas de Estoque
+Route::resource('saidas', SaidaProdutoController::class)->names([
+    'index' => 'saidas.index',
+    'create' => 'saidas.create',       // Para registrar uma nova saída
+    'store' => 'saidas.store',         // Para salvar a saída
+    'show' => 'saidas.show',           // Para exibir os detalhes da saída
+    'edit' => 'saidas.edit',           // Para editar uma saída (se necessário)
+    'update' => 'saidas.update',       // Para atualizar uma saída
+    'destroy' => 'saidas.destroy',     // Para excluir uma saída
+]);
+
+// Rotas personalizadas para registrar saídas específicas de um produto
+Route::get('/saidas/create/{produto}', [SaidaProdutoController::class, 'create'])->name('saidas.create.produto');
+Route::get('/saidas', [SaidaProdutoController::class, 'index'])->name('saidas.index');
+Route::get('/saidas/show', [SaidaProdutoController::class, 'show'])->name('saidas.show.produto');
+// Route::get('/saidas/confirmar/{id}', [SaidaController::class, 'confirmarSaida'])->name('saidas.confirmar');
+Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
 
 Route::get('/socialite/google', [SocialLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback'])->name('google.callback');

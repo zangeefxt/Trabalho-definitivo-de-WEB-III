@@ -2,62 +2,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
-        .table-responsive {
-            overflow-x: auto;
-        }
-        .table thead th {
-            background-color: #343a40;
-            color: white;
-            font-weight: 600;
-        }
-        .table tbody tr:hover {
-            background-color: #f8f9fa;
-        }
-        .btn-action {
-            margin: 2px;
-            padding: 5px 10px;
-            font-size: 14px;
-        }
-        .btn-action i {
-            margin-right: 5px;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004085;
-        }
-        .btn-info {
-            background-color: #17a2b8;
-            border-color: #17a2b8;
-        }
-        .btn-info:hover {
-            background-color: #138496;
-            border-color: #117a8b;
-        }
-        .btn-warning {
-            background-color: #ffc107;
-            border-color: #ffc107;
-        }
-        .btn-warning:hover {
-            background-color: #e0a800;
-            border-color: #d39e00;
-        }
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
-        .btn-danger:hover {
-            background-color: #c82333;
-            border-color: #bd2130;
-        }
-        .form-container {
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-        }
+        /* Seus estilos anteriores aqui */
         .filtros {
             margin-bottom: 20px;
         }
@@ -97,18 +42,14 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="form-container">
-                        <!-- Filtros -->
+                        <!-- Filtro de Busca -->
                         <div class="filtros">
-                            <input type="text" placeholder="Nome">
-                            <input type="text" placeholder="CPF">
-                            <input type="text" placeholder="Email">
-                            <input type="text" placeholder="Telefone">
-                            <button><i class="fas fa-filter"></i> Filtrar</button>
+                            <input type="text" id="searchInput" placeholder="Buscar cliente..." onkeyup="filterTable()">
+                            <button onclick="filterTable()"><i class="fas fa-search"></i> Buscar</button>
                         </div>
-
                         <!-- Tabela de Clientes -->
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" id="clientesTable">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -152,4 +93,37 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function filterTable() {
+            var input, filter, table, tr, td, i, j, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("clientesTable");
+            tr = table.getElementsByTagName("tr");
+
+            
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td"); 
+                let found = false; 
+
+                
+                for (j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            found = true; 
+                            break; 
+                        }
+                    }
+                }
+
+                if (found) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </x-app-layout>
