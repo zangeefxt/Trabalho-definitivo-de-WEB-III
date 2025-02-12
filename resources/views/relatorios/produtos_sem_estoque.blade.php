@@ -2,8 +2,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
-            <i class="fas fa-box mr-2"></i> Produtos com Estoque
+    <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight text-center">
+            <i class="fas fa-boxes"></i> Produtos sem Estoque
         </h2>
     </x-slot>
 

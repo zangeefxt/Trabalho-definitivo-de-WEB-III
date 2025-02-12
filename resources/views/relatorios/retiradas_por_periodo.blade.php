@@ -1,7 +1,8 @@
 <x-app-layout>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight flex items-center">
-            <i class="fas fa-calendar-alt mr-2"></i> Retiradas por Período: {{ ucfirst($periodo) }}
+        <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight text-center">
+            <i class="fas fa-user-circle"></i></i> Retiradas por Periodo
         </h2>
     </x-slot>
 
@@ -32,7 +33,8 @@
                                         <td class="border px-4 py-2">{{ $retirada->cliente->nome }}</td>
                                         <td class="border px-4 py-2">{{ $retirada->created_at->format('d/m/Y H:i') }}</td>
                                         <td class="border px-4 py-2 text-green-600 dark:text-green-400 font-semibold">
-                                            R$ {{ number_format($retirada->quantidade * $retirada->produto->valor_unitario, 2, ',', '.') }}
+                                            R$
+                                            {{ number_format($retirada->quantidade * $retirada->produto->valor_unitario, 2, ',', '.') }}
                                         </td>
                                     </tr>
                                 @endforeach

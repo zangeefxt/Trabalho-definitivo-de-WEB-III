@@ -10,7 +10,7 @@ use Carbon\Carbon;
 
 class RelatorioController extends Controller
 {
-    // Relatório de Retiradas Agrupadas por Período
+
     public function retiradasPorPeriodo(Request $request)
     {
         $periodo = $request->input('periodo', 'diario'); // Padrão: diário
@@ -33,21 +33,21 @@ class RelatorioController extends Controller
         return view('relatorios.retiradas_por_periodo', compact('retiradas', 'periodo'));
     }
 
-    // Relatório de Retiradas Agrupadas por Cliente
+
     public function retiradasPorCliente()
     {
         $clientes = Cliente::with('saidas.produto')->get();
         return view('relatorios.retiradas_por_cliente', compact('clientes'));
     }
 
-    // Relatório de Produtos sem Estoque
+
     public function produtosSemEstoque()
     {
         $produtos = Produto::where('estoque', 0)->get();
         return view('relatorios.produtos_sem_estoque', compact('produtos'));
     }
 
-    // Relatório de Produtos com Estoque
+
     public function produtosComEstoque()
     {
         $produtos = Produto::where('estoque', '>', 0)->get();

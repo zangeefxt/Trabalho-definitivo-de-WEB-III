@@ -36,7 +36,6 @@
                         <div id="produtos-container">
                             <h4>Produtos</h4>
                             <div class="produto-item mb-3">
-                                <!--<label for="produtos[0][produto_id]">Produto</label>-->
                                 <select name="produtos[0][produto_id]" class="form-control" required>
                                     <option value="">Selecione um produto</option>
                                     @foreach($produtos as $produto)
