@@ -50,7 +50,29 @@ $logout = function (Logout $logout) {
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('saidas.index')" :active="request()->routeIs('saidas.index')" wire:navigate>
-                        {{ __('Saidas') }}
+                        {{ __('Saídas') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- Links para Relatórios -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('relatorios.retiradas_por_periodo')" :active="request()->routeIs('relatorios.retiradas_por_periodo')" wire:navigate>
+                        {{ __('Retiradas por Período') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('relatorios.retiradas_por_cliente')" :active="request()->routeIs('relatorios.retiradas_por_cliente')" wire:navigate>
+                        {{ __('Retiradas por Cliente') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('relatorios.produtos_sem_estoque')" :active="request()->routeIs('relatorios.produtos_sem_estoque')" wire:navigate>
+                        {{ __('Produtos sem Estoque') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('relatorios.produtos_com_estoque')" :active="request()->routeIs('relatorios.produtos_com_estoque')" wire:navigate>
+                        {{ __('Produtos com Estoque') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -106,14 +128,14 @@ $logout = function (Logout $logout) {
         </div>
 
         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('categorias.index')" wire:navigate>
-                        {{ __('Clientes') }}
-                    </x-nav-link>
+            <x-nav-link :href="route('clientes.index')" :active="request()->routeIs('categorias.index')" wire:navigate>
+                {{ __('Clientes') }}
+            </x-nav-link>
         </div>
         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('categorias.index')" :active="request()->routeIs('categorias.index')" wire:navigate>
-                        {{ __('Categorias') }}
-                    </x-nav-link>
+            <x-nav-link :href="route('categorias.index')" :active="request()->routeIs('categorias.index')" wire:navigate>
+                {{ __('Categorias') }}
+            </x-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

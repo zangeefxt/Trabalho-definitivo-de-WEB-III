@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\UnidadeController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SaidaProdutoController;
+use App\Http\Controllers\RelatorioController;
 
 Route::view('/', 'welcome');
 
@@ -67,6 +68,11 @@ Route::get('/saidas', [SaidaProdutoController::class, 'index'])->name('saidas.in
 Route::get('/saidas/show', [SaidaProdutoController::class, 'show'])->name('saidas.show.produto');
 // Route::get('/saidas/confirmar/{id}', [SaidaController::class, 'confirmarSaida'])->name('saidas.confirmar');
 Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
+
+Route::get('/relatorios/retiradas-por-periodo', [RelatorioController::class, 'retiradasPorPeriodo'])->name('relatorios.retiradas_por_periodo');
+Route::get('/relatorios/retiradas-por-cliente', [RelatorioController::class, 'retiradasPorCliente'])->name('relatorios.retiradas_por_cliente');
+Route::get('/relatorios/produtos-sem-estoque', [RelatorioController::class, 'produtosSemEstoque'])->name('relatorios.produtos_sem_estoque');
+Route::get('/relatorios/produtos-com-estoque', [RelatorioController::class, 'produtosComEstoque'])->name('relatorios.produtos_com_estoque');
 
 Route::get('/socialite/google', [SocialLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [SocialLoginController::class, 'handleGoogleCallback'])->name('google.callback');

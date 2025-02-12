@@ -13,7 +13,9 @@ class Produto extends Model
         'descricao', 
         'valor_unitario',
         'id_unidade',
-        'id_categoria'
+        'id_categoria',
+        'estoque_inicial'
+        
     ];
 
     public function categoria()
